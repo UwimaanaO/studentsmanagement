@@ -28,7 +28,7 @@ else if (isset($_SESSION['usertype']) && $_SESSION['usertype'] == 'student') {
 
 <a href="">Admin Dashboard</a>
 <div class="logout">
-    <a class="btn btn-danger" href="">Logout</a>
+    <a class="btn btn-danger" href="logout.php">Logout</a>
 </div>
 </header>
 <aside>
@@ -58,17 +58,17 @@ else if (isset($_SESSION['usertype']) && $_SESSION['usertype'] == 'student') {
 </li>
 </ul>
 </aside>
-<div>
+<div class="content">
     <h1>Welcome to the Student Management Dashboard!</h1>
     <p>Manage Students: Add, edit, or delete student details with ease.
 
-Attendance Tracking: Monitor and update attendance records.
+    Attendance Tracking: Monitor and update attendance records.
 
-Performance Insights: View grades and progress reports.
+    Performance Insights: View grades and progress reports.
 
-Class Management: Assign students to classes or groups.
+    Class Management: Assign students to classes or groups.
 
-Notifications: Stay updated with announcements and alerts.</p>
+    Notifications: Stay updated with announcements and alerts.</p>
 </div>
 </body>
 </html>

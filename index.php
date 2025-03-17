@@ -1,3 +1,16 @@
+<?php
+error_reporting(0);
+session_start();
+session_destroy();
+if ($_SESSION['message']){
+    $message=$_SESSION['message'];
+    echo"<script type='text/javascript'>
+    alert('$message');
+    </script>";
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -87,25 +100,25 @@
             <h1 class="adm">Admission Form</h1>
         </center>
         <div align="center" class="admission_form">
-            <form action="">
+            <form action="data_check.php" method="POST">
                 <div class="adm_form">
                   <label class="label_text">Name</label>
-                  <input class="input_des" type="text" name="">
+                  <input class="input_des" type="text" name="name">
                 </div>
                 <div class="adm_form">
                   <label class="label_text">Email</label>
-                  <input class="input_des" type="email" name="">
+                  <input class="input_des" type="email" name="email">
                 </div>
                 <div class="adm_form">
                   <label class="label_text">Phone</label>
-                  <input class="input_des" type="text" name="">
+                  <input class="input_des" type="text" name="phone">
                   </div>
                 <div class="adm_form">
                   <label class="label_text">Message</label>
-                  <textarea class="text_area"></textarea>
+                  <textarea class="text_area" name="message"></textarea>
                 </div>
                 <div class="adm_form">
-                    <input class="btn btn-primary" type="submit" value="Apply" id="submit">
+                    <input class="btn btn-primary" type="submit" value="Apply" id="submit" name="apply">
                 </div>
             </form>
 
