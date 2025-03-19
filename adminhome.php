@@ -1,21 +1,17 @@
 <?php
 session_start();
-if (isset($_SESSION['username'])) {
+
+// Redirect if user is not logged in OR if user is not an admin
+if (!isset($_SESSION['username']) || $_SESSION['usertype'] !== 'admin') {
     header('location:login.php');
-    exit; // It's good practice to include exit after a header redirect
-} 
-else if (isset($_SESSION['usertype']) && $_SESSION['usertype'] == 'student') {
-    header('location:login.php');
-    exit;
-} 
+    exit; // Always exit after a redirect
+}
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-<?php
+    <?php
 
 include('admin_css.php');
 
@@ -23,40 +19,11 @@ include('admin_css.php');
     <title>Admin Page</title>
 </head>
 <body>
-<header class="header">
+    <?php
 
-<a href="">Admin Dashboard</a>
-<div class="logout">
-    <a class="btn btn-danger" href="logout.php">Logout</a>
-</div>
-</header>
-<aside>
+include('admin_sidebar.php');
 
-<ul>
-
-<li>
-    <a href="admission.php">Admission</a>
-</li>
-<li>
-    <a href="">Add Student</a>
-</li>
-<li>
-    <a href="">View Students</a>
-</li>
-<li>
-    <a href="">Add Teacher</a>
-</li>
-<li>
-    <a href="">View Teachers</a>
-</li>
-<li>
-    <a href="">Add Course</a>
-</li>
-<li>
-    <a href="">View Courses</a>
-</li>
-</ul>
-</aside>
+?>
 <div class="content">
     <h1>Welcome to the Student Management Dashboard!</h1>
 </div>

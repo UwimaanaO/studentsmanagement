@@ -1,5 +1,4 @@
 <?php
-error_reporting(0);
 
 session_start();
 $host="localhost";
@@ -33,14 +32,4 @@ else{
     header('location:login.php');
 }
 }
-
-
-
-
-
-
-
-
-
-
 ?>

@@ -1,13 +1,13 @@
 <?php
 session_start();
-if (isset($_SESSION['username'])) {
+if (!isset($_SESSION['username'])) {
     header('location:login.php');
     exit; // It's good practice to include exit after a header redirect
 } 
 else if (isset($_SESSION['usertype']) && $_SESSION['usertype'] == 'student') {
     header('location:login.php');
     exit;
-} 
+}
 $host="localhost";
 $user="root";
 $password="";

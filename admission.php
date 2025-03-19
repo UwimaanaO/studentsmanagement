@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION['username'])) {
+if (!isset($_SESSION['username'])) {
     header('location:login.php');
     exit; // It's good practice to include exit after a header redirect
 } 
