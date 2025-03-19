@@ -1,10 +1,15 @@
 <?php
 session_start();
 
-// Redirect if user is not logged in OR if user is not a student
-if (!isset($_SESSION['username']) || $_SESSION['usertype'] !== 'student') {
-    header('location:login.php');
-    exit; // Always exit after a redirect
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit;
+}
+
+// Redirect if not a student
+if ($_SESSION['usertype'] !== 'student') {
+    header("Location: adminhome.php");
+    exit;
 }
 ?>
 

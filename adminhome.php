@@ -1,10 +1,16 @@
 <?php
 session_start();
 
-// Redirect if user is not logged in OR if user is not an admin
-if (!isset($_SESSION['username']) || $_SESSION['usertype'] !== 'admin') {
-    header('location:login.php');
-    exit; // Always exit after a redirect
+// Redirect to login if the user is not logged in
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit;
+}
+
+// Optional: Ensure correct user role (for admin pages)
+if ($_SESSION['usertype'] !== 'admin') { 
+    header("Location: studenthome.php"); // Redirect non-admins
+    exit;
 }
 ?>
 <!DOCTYPE html>
