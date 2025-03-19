@@ -68,10 +68,7 @@ include('admin_css.php');
                             </form>
                         </td>
                         <td style="padding: 20px; background-color: skyblue;">
-                            <form method="POST" action="update_student.php" onsubmit="return confirm('Are you sure you want to update this student?');">
-                                <input type="hidden" name="student_id" value="<?php echo $info['id']; ?>">
-                                <button type="submit" class="btn btn-warning" style="color:white;">Update</button>
-                            </form>
+                           <?php echo"<a class='btn btn-warning' href='update_student.php?student_id={$info['id']}'> Update</a>"?>
                         </td>
                     </tr>
                 <?php } ?>
