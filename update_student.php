@@ -1,5 +1,5 @@
 <?php
-session_start();
+/*session_start();
 if (!isset($_SESSION['username'])) {
     header('location:login.php');
     exit; // It's good practice to include exit after a header redirect
@@ -8,7 +8,28 @@ else if (isset($_SESSION['usertype']) && $_SESSION['usertype'] == 'student') {
     header('location:login.php');
     exit;
 } 
+*/
+session_start();
 
+// If session isn't set, redirect to login
+if (!isset($_SESSION['username'])) {
+    header('location:login.php');
+    exit;
+} 
+else if (isset($_SESSION['usertype']) && $_SESSION['usertype'] == 'student') {
+    header('location:login.php');
+    exit;
+}
+
+// If session isn't set, redirect to login
+if (!isset($_SESSION['username'])) {
+    header('location:login.php');
+    exit;
+} 
+else if (isset($_SESSION['usertype']) && $_SESSION['usertype'] == 'student') {
+    header('location:login.php');
+    exit;
+}
 $host = "localhost";
 $user = "root";
 $password = "";

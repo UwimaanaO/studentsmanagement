@@ -26,36 +26,8 @@ if ($_SESSION['usertype'] !== 'student') {
     <title>Student Page</title>
 </head>
 <body>
-<header class="header">
-
-<a href="">Student Dashboard</a>
-<div class="logout">
-    <a class="btn btn-danger" href="logout.php">Logout</a>
-</div>
-</header>
-<aside>
-
-<ul>
-
-<li>
-    <a href="">My Courses</a>
-</li>
-<li>
-    <a href="">My Result</a>
-</li>
-</ul>
-</aside>
-<div class="content">
-    <h1>Welcome to the Student Management Dashboard!</h1>
-    <p>Manage Students: Add, edit, or delete student details with ease.
-
-    Attendance Tracking: Monitor and update attendance records.
-
-    Performance Insights: View grades and progress reports.
-
-    Class Management: Assign students to classes or groups.
-
-    Notifications: Stay updated with announcements and alerts.</p>
-</div>   
+    <?php 
+    include'student_sidebar.php';
+    ?> 
 </body>
 </html>
