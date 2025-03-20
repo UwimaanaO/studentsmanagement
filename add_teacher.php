@@ -1,13 +1,4 @@
 <?php
-/*session_start();
-if (!isset($_SESSION['username'])) {
-    header('location:login.php');
-    exit; // It's good practice to include exit after a header redirect
-} 
-else if (isset($_SESSION['usertype']) && $_SESSION['usertype'] == 'student') {
-    header('location:login.php');
-    exit;
-}*/
 session_start();
 
 // If session isn't set, redirect to login
@@ -19,35 +10,49 @@ else if (isset($_SESSION['usertype']) && $_SESSION['usertype'] == 'student') {
     header('location:login.php');
     exit;
 }
-$host="localhost";
-$user="root";
-$password="";
-$db="schoolproject";
-$conn=mysqli_connect($host,$user,$password,$db);
+
+$host = "localhost";
+$user = "root";
+$password = "";
+$db = "schoolproject";
+$conn = mysqli_connect($host, $user, $password, $db);
+
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-if(isset($_POST["add_teacher"])) {
-    $tname = $_POST["name"];
-    $tdescription = $_POST["description"];
-    $temail = $_POST["email"];
+
+if (isset($_POST["add_teacher"])) {
+    $tname = mysqli_real_escape_string($conn, $_POST["name"]);
+    $tdescription = mysqli_real_escape_string($conn, $_POST["description"]);
+    $temail = mysqli_real_escape_string($conn, $_POST["email"]);
+    
     $timage = $_FILES['image']['name'];
-    $dst="./images/".$timage;
-    $dst_db = "/images".$timage;
-    move_uploaded_file($_FILES['image']['tmp_name'], $dst);
-    $sql = "INSERT INTO teachers (name,description,email,image) VALUES ('$tname','$tdescription','$temail','$dst_db')";
-    $result = mysqli_query($conn,$sql);
-    if($result){
+    $dst = "./images/" . $timage; // Correct path
+    $dst_db = "images/" . $timage; // Correct path in DB
+    $check="SELECT * FROM teachers WHERE email='$temail'";
+    $check_user=mysqli_query($conn, $check);
+    $row_count=mysqli_num_rows($check_user);
+    if($row_count== 1) {
         echo "<script type='text/javascript'>
-        alert('Data Uploaded successfully');
+        alert('Email already exists. Try another one');
         
         </script>";
-    }
-    else{
-        echo "Data upload failed";
+    }else{
+
+    if (move_uploaded_file($_FILES['image']['tmp_name'], $dst)) {
+        $sql = "INSERT INTO teachers (name, description, email, image) VALUES ('$tname', '$tdescription', '$temail', '$dst_db')";
+        $result = mysqli_query($conn, $sql);
+        
+        if ($result) {
+            echo "<script>alert('Data Uploaded successfully');</script>";
+        } else {
+            echo "<script>alert('Database insertion failed');</script>";
+        }
+    } else {
+        echo "<script>alert('File upload failed');</script>";
     }
 }
-    
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

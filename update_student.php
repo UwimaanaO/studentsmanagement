@@ -1,26 +1,5 @@
 <?php
-/*session_start();
-if (!isset($_SESSION['username'])) {
-    header('location:login.php');
-    exit; // It's good practice to include exit after a header redirect
-} 
-else if (isset($_SESSION['usertype']) && $_SESSION['usertype'] == 'student') {
-    header('location:login.php');
-    exit;
-} 
-*/
 session_start();
-
-// If session isn't set, redirect to login
-if (!isset($_SESSION['username'])) {
-    header('location:login.php');
-    exit;
-} 
-else if (isset($_SESSION['usertype']) && $_SESSION['usertype'] == 'student') {
-    header('location:login.php');
-    exit;
-}
-
 // If session isn't set, redirect to login
 if (!isset($_SESSION['username'])) {
     header('location:login.php');
@@ -70,12 +49,21 @@ if (isset($_GET['student_id'])) {
     exit;
 }
 
+
 if(isset($_POST["update"])) {
 $username=$_POST['username'];
 $email=$_POST['email'];
 $phone=$_POST['phone'];
 
-
+$check="SELECT * FROM users WHERE email='$email'";
+$check_user=mysqli_query($conn, $check);
+$row_count=mysqli_num_rows($check_user);
+if($row_count== 1) {
+    echo "<script type='text/javascript'>
+    alert('Email already exists. Try another one');
+    
+    </script>";
+}else{
 $query="UPDATE users SET username='$username', email='$email', phone='$phone' WHERE id='$id'";
 $result2=mysqli_query($conn, $query);
 if ($result2) {
@@ -83,6 +71,7 @@ if ($result2) {
     alert('Data Updated Successfully');
     
     </script>";
+}
 }
 }
 

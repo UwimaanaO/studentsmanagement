@@ -56,6 +56,7 @@ include('admin_sidebar.php');
     <h1>Applied for Admission</h1>
     <table border="1">
         <tr>
+            <th style="padding: 20px; font-size: 15px;">ID</th>
             <th style="padding: 20px; font-size: 15px;">Name</th>
             <th style="padding: 20px; font-size: 15px;">Email</th>
             <th style="padding: 20px; font-size: 15px;">Phone</th>
@@ -66,6 +67,9 @@ include('admin_sidebar.php');
     
         ?>
         <tr>
+        <td style="padding: 20PX;">
+                <?php echo"{$info['id']}"?>
+            </td>
             <td style="padding: 20PX;">
                 <?php echo"{$info['name']}"?>
             </td>

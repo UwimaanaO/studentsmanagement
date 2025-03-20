@@ -60,6 +60,7 @@ include('admin_css.php');
 
             <table border="1">
                 <tr>
+                    <th style="padding: 20px; font-size: 15px;">ID</th>
                     <th style="padding: 20px; font-size: 15px;">Username</th>
                     <th style="padding: 20px; font-size: 15px;">Email</th>
                     <th style="padding: 20px; font-size: 15px;">Phone</th>
@@ -69,6 +70,7 @@ include('admin_css.php');
 
                 <?php while ($info = $result->fetch_assoc()) { ?>
                     <tr>
+                    <td style="padding: 20px; background-color: skyblue;"><?php echo $info['id']; ?></td>
                         <td style="padding: 20px; background-color: skyblue;"><?php echo $info['username']; ?></td>
                         <td style="padding: 20px; background-color: skyblue;"><?php echo $info['email']; ?></td>
                         <td style="padding: 20px; background-color: skyblue;"><?php echo $info['phone']; ?></td>

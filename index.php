@@ -8,6 +8,16 @@ if ($_SESSION['message']){
     alert('$message');
     </script>";
 }
+$host="localhost";
+$user="root";
+$password="";
+$db="schoolproject";
+$conn=mysqli_connect($host,$user,$password,$db);
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+$sql="SELECT * from teachers";
+$result=mysqli_query($conn,$sql);
 
 
 ?>
@@ -61,19 +71,26 @@ if ($_SESSION['message']){
     </center>
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
-            <img class="teacher" src="teacher1.png" alt="">
-            <p>Teacher Williams </p>
-            </div>
-            <div class="col-md-4">
-            <img class="teacher" src="teacher2.png" alt="">
-            <p>Teacher Larry</p>
-            </div>
-            <div class="col-md-4">
-            <img class="teacher" src="teacher3.png" alt="">
-            <p>Teacher Grace</p>
-            </div>
+        <?php 
+        while($info=$result->fetch_assoc())
+        {
+            
+        ?>
+        <div class="col-md-4">
 
+        <img class="teacher" src="<?php echo $info['image']; ?>" alt="Teacher Image">
+            <h3>
+                <?php echo "{$info['name']}"?>
+            </h3>
+            <p>
+                <?php echo "{$info['description']}"?>
+            </p>
+            </div>
+        
+
+        <?php
+    
+    }?>
         </div>
 
     </div>
@@ -117,7 +134,7 @@ if ($_SESSION['message']){
                   <label class="label_text">Message</label>
                   <textarea class="text_area" name="message"></textarea>
                 </div>
-                <div class="adm_form">
+             <div class="adm_form">
                     <input class="btn btn-primary" type="submit" value="Apply" id="submit" name="apply">
                 </div>
             </form>
