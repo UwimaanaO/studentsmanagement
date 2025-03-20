@@ -19,16 +19,16 @@
     <a href="view_students.php">View Students</a>
 </li>
 <li>
-    <a href="#">Add Teacher</a>
+    <a href="add_teacher.php">Add Teacher</a>
 </li>
 <li>
-    <a href="#">View Teachers</a>
+    <a href="view_teachers.php">View Teachers</a>
 </li>
 <li>
-    <a href="#">Add Course</a>
+    <a href="add_course.php">Add Course</a>
 </li>
 <li>
-    <a href="#">View Courses</a>
+    <a href="view_courses.php">View Courses</a>
 </li>
 </ul>
 </aside>
