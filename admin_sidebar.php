@@ -1,6 +1,6 @@
 <header class="header">
 
-<a href="#">Admin Dashboard</a>
+<a href="adminhome.php">Admin Dashboard</a>
 <div class="logout">
     <a class="btn btn-danger" href="logout.php">Logout</a>
 </div>

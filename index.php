@@ -36,9 +36,9 @@ $result2=mysqli_query($conn,$sql2);
 </head>
 <body>
     <nav>
-        <label class="logo">T3 Schools</label>
+        <label class="logo">L3 Schools</label>
         <ul>
-            <li><a href="">Home</a></li>
+            <li><a href="index.php">Home</a></li>
             <li><a href="">Contact</a></li>
             <li><a href="">Admission</a></li>
             <li><a href="login.php" class="btn btn-success">Login</a></li>
@@ -46,17 +46,17 @@ $result2=mysqli_query($conn,$sql2);
     </nav>
 
     <div class="section1">
-        <label class="img_text">We teach students with care</label>
-        <img class ="main_img" src="school.png" alt="School">
+        <!--<label class="img_text">We teach students with care</label>-->
+        <img class ="main_img" src="library.avif" alt="School">
     </div>
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <img class="welcome_img" src="playground.jpg" alt="">
+                <img class="welcome_img" src="school.avif" alt="">
             </div>
             <div class="col-md-8">
-                <h1>Welcome to T3 Schools</h1>
-                <p>T3 School possesses strong knowledge in 
+                <h1>Welcome to L3 Schools</h1>
+                <p>L3 School possesses strong knowledge in 
                     IT infrastructure, network administration, and software development. 
                     It is proficient in troubleshooting technical issues and has an excellent ability to develop and implement effective IT solutions that improve efficiency. 
                     Her adaptability to new technologies and her dedication to 
