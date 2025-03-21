@@ -2,7 +2,7 @@
 
 <a href="">Teacher Dashboard</a>
 <div class="logout">
-    <a class="btn btn-danger" href="logout.php">Logout</a>
+    <a class="btn btn-danger" href="logoutteacher.php">Logout</a>
 </div>
 </header>
 <aside>
