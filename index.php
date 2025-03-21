@@ -18,7 +18,8 @@ if (!$conn) {
 }
 $sql="SELECT * from teachers";
 $result=mysqli_query($conn,$sql);
-
+$sql2="SELECT * from courses";
+$result2=mysqli_query($conn,$sql2);
 
 ?>
 <!DOCTYPE html>
@@ -99,20 +100,29 @@ $result=mysqli_query($conn,$sql);
     </center>
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
-            <img class="course" src="graphic_design.png" alt="">
-            <h3>Graphics Design</h3>
-            </div>
-            <div class="col-md-4">
-            <img class="course" src="web_development.png" alt="">
-            <h3>Web development</h3>
-            </div>
-            <div class="col-md-4">
-            <img class="course" src="digital_marketing.png" alt="">
-            <h3>Digital Marketing</h3>
-            </div>
+        <?php 
+        while($info2=$result2->fetch_assoc())
+        {
+            
+        ?>
+        <div class="col-md-4">
 
+        <img class="teacher" src="<?php echo $info2['image']; ?>" alt="Course image">
+            <h3>
+                <?php echo "{$info2['name']}"?>
+            </h3>
+            <p>
+                <?php echo "Course Code: {$info2['code']}"?>
+            </p>
+            </div>
+        
+
+        <?php
+    
+    }?>
         </div>
+
+    </div>
         <center>
             <h1 class="adm">Admission Form</h1>
         </center>
