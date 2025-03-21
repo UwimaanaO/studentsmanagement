@@ -2,35 +2,40 @@
 session_start();
 
 if (!isset($_SESSION['email'])) {
-    header("Location: login.php");
+    header("Location: loginteacher.php");
     exit;
 }
 
-$host="localhost";
-$user="root";
-$password="";
-$db="schoolproject";
-$conn=mysqli_connect($host,$user,$password,$db);
+$host = "localhost";
+$user = "root";
+$password = "";
+$db = "schoolproject";
+$conn = mysqli_connect($host, $user, $password, $db);
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-$name=$_SESSION['username'];
-$sql="SELECT * FROM users WHERE username='$name'";
-$result=mysqli_query($conn,$sql);
-$info=mysqli_fetch_assoc($result);
 
-if(isset($_POST['update_profile'])){
-    $email = $_POST['email'];
-    $phone = $_POST['phone'];
-    $password =($_POST['password']);
+$email = $_SESSION['email'];
+$sql = "SELECT * FROM teachers WHERE email=?";
+$stmt = mysqli_prepare($conn, $sql);
+mysqli_stmt_bind_param($stmt, "s", $email);
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
+$info = mysqli_fetch_assoc($result);
+mysqli_stmt_close($stmt);
 
-    $sql2 = "UPDATE users SET email=?, phone=?, password=? WHERE username=?";
+if (isset($_POST['update_profile'])) {
+    $new_email = $_POST['email'];
+    $new_password = $_POST['password']; // Direct password (not hashed)
+
+    // Prepare the update statement
+    $sql2 = "UPDATE teachers SET email=?, password=? WHERE email=?";
     $stmt = mysqli_prepare($conn, $sql2);
-    mysqli_stmt_bind_param($stmt, "ssss", $email, $phone, $password, $name);
+    mysqli_stmt_bind_param($stmt, "sss", $new_email, $new_password, $email);
 
     if (mysqli_stmt_execute($stmt)) {
-        echo "<script>alert('Student Profile Updated Successfully');</script>";
-        // Refresh page to load new data
+        echo "<script>alert('Teacher Profile Updated Successfully');</script>";
+        $_SESSION['email'] = $new_email; // Update session email
         echo "<meta http-equiv='refresh' content='0'>";
     } else {
         echo "<script>alert('Update failed');</script>";
@@ -39,7 +44,6 @@ if(isset($_POST['update_profile'])){
     mysqli_stmt_close($stmt);
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,11 +69,11 @@ if(isset($_POST['update_profile'])){
             padding-bottom: 70px;
         }
     </style>
-    <title>Student Page</title>
+    <title>Teacher Page</title>
 </head>
 <body>
     <?php 
-    include'student_sidebar.php';
+    include'teacher_sidebar.php';
     ?> 
     <div class="content">
 <center>
@@ -78,10 +82,6 @@ if(isset($_POST['update_profile'])){
         <h2>Update My Profile</h2>
         <form action="" method="POST">
     <div class="div_des">
-        <div>
-            <label>Phone</label>
-            <input type="number" name="phone" value="<?php echo htmlspecialchars($info['phone']); ?>" style="width: 60%;" required>
-        </div>
         <div>
             <label>Email</label>
             <input type="email" name="email" value="<?php echo htmlspecialchars($info['email']); ?>" style="width: 60%;" required>
